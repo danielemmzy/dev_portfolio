@@ -5,6 +5,8 @@ import { Experience } from "@/sections/Experience";
 import { Testimonials } from "@/sections/Testimonial";
 import { Contact } from "@/sections/Contact";
 import { Navbar } from "@/layout/navbar";
+import { Footer } from "./layout/Footer";
+
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
         <Contact />
 
       </main>
+      <Footer />
     </div>
   );
 }

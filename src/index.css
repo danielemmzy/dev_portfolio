@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @theme {
+  
+  /* DARK MODE (default - your current design) */
   --color-background: #0f1418;
   --color-foreground: #f0f2f5;
 
@@ -21,14 +23,35 @@
 
   --color-highlight: #f5a623;
   --color-surface: #1a2329;
+}
 
+:root.light {
+  --color-background: #f8fafc;
+  --color-foreground: #0f172a;
 
+  --color-card: #ffffff;
 
+  --color-primary: #0ea5e9;
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary: #e2e8f0;
+  --color-secondary-foreground: #0ea5e9;
+
+  --color-muted: #f1f5f9;
+  --color-muted-foreground: #64748b;
+
+  --color-border: #e2e8f0;
+
+  --color-highlight: #f59e0b;
+  --color-surface: #ffffff;
 }
 
 @layer base {
   html{
     scroll-behavior: smooth;
+  }
+  button {
+    cursor: pointer;
   }
   body{
     background-color: var(--color-background);
@@ -171,5 +194,10 @@
     background-color: color-mix(in srgb, #26c4b8 15%, transparent);
     backdrop-filter: blur(16px);
     box-shadow: 0 0 20px color-mix(in srgb, #26c4b8 20%, transparent);
+  }
+  .timeline-glow {
+    box-shadow: 0 0 40px
+    color-mix(in srgb, var(--color-primary) 35%, transparent),
+    0 0 80px color-mix(in srgb, var(--color-primary) 25%, transparent);
   }
 }

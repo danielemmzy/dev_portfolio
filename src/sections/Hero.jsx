@@ -1,41 +1,69 @@
-import { ArrowRight, ChevronDown, Download, Github, Linkedin, Twitter } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronDown,
+  Download,
+  Github,
+  Linkedin,
+  Twitter,
+} from "lucide-react";
 import { Button } from "../components/Button";
 import { AnimatedBorderButton } from "../components/Animated-border-button";
 
 const skills = [
+  // Programming & Backend
   "Python",
-  "FastApi",
-  "Django and Django Rest FrameWork",
-  "Flask and Flask-RESTX",
-  "Pytorch",
+  "FastAPI",
+  "Django & Django Rest Framework",
+  "Flask & Flask-RESTX",
+  "Node.js",
+  "Spring Boot",
   "Java",
-  "Spring boot",
   "TypeScript",
-  "React",
-  "Next.Js",
-  "React Native",
-  "Node.Js",
   "GraphQL",
-  "PostgreSQL",
+
+  // Frontend & Mobile
+  "React",
+  "Next.js",
+  "React Native",
   "Dart",
   "Flutter",
+  "Tailwind CSS",
+
+  // Databases & Data Management
+  "PostgreSQL",
   "MongoDB",
   "Redis",
   "Memcached",
+  "Django ORM",
+  "SQLAlchemy",
+  "SQLModel",
+  "Spring Data JPA",
+  "Prisma",
+
+  // AI / Machine Learning / Data Science
+  "PyTorch",
+  "TensorFlow",
+  "Scikit-learn",
+  "NumPy",
+  "Pandas",
+  "Matplotlib (Pyplot)",
+  "Seaborn",
+  "Data Preprocessing",
+  "Feature Engineering",
+  "Model Training & Evaluation",
+  "Supervised Learning",
+
+  // DevOps & Cloud
   "Docker",
   "AWS",
   "Vercel",
   "Render",
-  "Tailwind CSS",
-  "Django Orm",
-  "SQL Alchemy",
-  "SQL Model",
-  "Spring Data JPA",
-  "Prisma",
+  "Git",
+  "GitHub Actions",
+
+  // Testing
   "Jest",
   "Cypress",
-  "Git",
-  "Git Actions",
 ];
 
 export const Hero = () => {
@@ -88,27 +116,43 @@ export const Hero = () => {
             <div className="space-y-6">
               {" "}
               {/* ← increased from 4 to 6 */}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-in animation-delay-100">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-fade-in animation-delay-100">
                 Reliable{" "}
-                <span className="text-primary glow-text">Python backends</span>
-                <br />& scalable APIs
-                <span className="font-serif italic font-normal text-white block mt-2">
-                  built for production.
+                <span className="text-primary glow-text">
+                  Backend & ML Engineer{" "}
+                </span>
+                <br />
+                building intelligent AI solutions,
+                <span className="font-serif italic font-normal text-foreground block mt-2">
+                  scalable systems.
                 </span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-lg animate-fade-in animation-delay-100">
-                Hi, I’m Daniel Njoku — I build reliable Python backends and
-                modern full-stack systems that solve real problems. I focus on
-                writing clean, scalable code that teams and products can depend
-                on.
+                Hi, I’m Daniel Njoku. I build reliable Python backends,
+                intelligent machine learning systems, and data-driven
+                applications that solve real-world problems. I enjoy turning
+                complex data into meaningful insights and scalable solutions,
+                combining backend engineering with data science and AI to create
+                products that are efficient, robust, and ready for production.
               </p>
             </div>
             {/* CTAs - slightly bigger gap */}
             <div className="flex flex-wrap gap-6 animate-fade-in animation-delay-300 mt-4">
-              <Button size="lg">
+              <a href="#contact">
+              <Button size="lg" href="#contact">
                 Contact Me <ArrowRight className="w-5 h-5" />
               </Button>
-              <AnimatedBorderButton />
+              </a>
+              <AnimatedBorderButton>
+                <a
+                  href="/projects/DannysResumeAi.pdf"
+                  download
+                  className="flex items-center gap-2"
+                >
+                  <Download className="w-5 h-5" />
+                  Download CV
+                </a>
+              </AnimatedBorderButton>
             </div>
             {/* Social links */}
             <div className="flex items-center gap-6 animate-fade-in animation-delay-400 mt-6">
@@ -193,12 +237,15 @@ export const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-fade-in animation-delay-800"> 
-        <a href="#about" className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-fade-in animation-delay-800">
+        <a
+          href="#about"
+          className="flex flex-col items-center gap-2 text-muted-foreground hover:text-primary"
+        >
           <span className="text-xs uppercase tracking-wider font-bold">
-             Scroll</span>
-             <ChevronDown className="w-6 h-6 animate-bounce"/>
-          
+            Scroll
+          </span>
+          <ChevronDown className="w-6 h-6 animate-bounce" />
         </a>
       </div>
     </section>

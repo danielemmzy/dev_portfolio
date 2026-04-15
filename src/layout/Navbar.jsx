@@ -1,6 +1,7 @@
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { Button } from "../components/Button";
 import { useEffect, useState } from "react";
+import { useTheme } from "@/hooks/useTheme";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -11,34 +12,33 @@ const navLinks = [
 ];
 
 export const Navbar = () => {
-  const  [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-useEffect(() => {
-  const handleScroll = () => {
-    // You can change 50 to 100/150 if you want later trigger
-    setIsScrolled(window.scrollY > 80);
-  };
+  const { theme, toggleTheme } = useTheme();
 
-  window.addEventListener('scroll', handleScroll, { passive: true }); // better performance
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 80);
+    };
 
-  return () => window.removeEventListener('scroll', handleScroll);
-}, []);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <header
-    className={`
-      fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out
-      ${isScrolled 
-        ? 'glass-strong py-3 shadow-lg backdrop-blur-md' 
-        : 'bg-transparent py-6'}
-    `}
-  >
+      className={`
+        fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out
+        ${isScrolled
+          ? "glass-strong py-3 shadow-lg backdrop-blur-md"
+          : "bg-transparent py-6"}
+      `}
+    >
       <nav className="container mx-auto px-6 flex items-center justify-between">
-        <a
-          href="#"
-          className="text-xl font-bold tracking-tight hover:text-primary"
-        >
+        {/* Logo */}
+        <a href="#" className="text-xl font-bold tracking-tight hover:text-primary">
           DN<span className="text-primary">.</span>
         </a>
 
@@ -49,7 +49,7 @@ useEffect(() => {
               <a
                 key={index}
                 href={link.href}
-                className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground rounded-full hover: bg-surface"
+                className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground rounded-full hover:bg-surface"
               >
                 {link.label}
               </a>
@@ -57,38 +57,73 @@ useEffect(() => {
           </div>
         </div>
 
-        {/*CTA Buttons */}
-        <div className="hidden md:block ">
+        {/* Right Side Actions */}
+        <div className="hidden md:flex items-center gap-3">
+          
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-xl border border-border hover:border-primary transition-all"
+          >
+            {theme === "dark" ? (
+              <Sun className="w-5 h-5" />
+            ) : (
+              <Moon className="w-5 h-5" />
+            )}
+          </button>
+
+          {/* CTA */}
           <Button size="sm">Contact Me</Button>
         </div>
 
-        {/* MobileMenu Button*/}
+        {/* Mobile Menu Button */}
         <button
           className="md:hidden p-2 text-foreground cursor-pointer"
           onClick={() => setIsMobileMenuOpen((prev) => !prev)}
         >
-          {isMobileMenuOpen ? <X size={24}/> : <Menu size={24} />}
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </nav>
+
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-  <div className="md:hidden glass-strong animate-fade-in">
-    <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
-      {navLinks.map((link, index) => (
-        <a
-          key={index}
-          href={link.href}
-          className="text-lg text-muted-foreground hover:text-foreground transition-colors py-2"
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
-          {link.label}
-        </a>
-      ))}
+        <div className="md:hidden glass-strong animate-fade-in">
+          <div className="container mx-auto px-6 py-6 flex flex-col gap-4">
 
-      <Button  onClick={() => setIsMobileMenuOpen(false)} size="sm">Contact Me</Button>
-    </div>
-  </div>
-)}
+            {navLinks.map((link, index) => (
+              <a
+                key={index}
+                href={link.href}
+                className="text-lg text-muted-foreground hover:text-foreground transition-colors py-2"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.label}
+              </a>
+            ))}
+
+            {/* Theme Toggle (Mobile) */}
+            <button
+              onClick={toggleTheme}
+              className="flex items-center gap-2 py-2 text-muted-foreground"
+            >
+              {theme === "dark" ? (
+                <>
+                  <Sun className="w-5 h-5" /> Light Mode
+                </>
+              ) : (
+                <>
+                  <Moon className="w-5 h-5" /> Dark Mode
+                </>
+              )}
+            </button>
+
+            <Button onClick={() => setIsMobileMenuOpen(false)} size="sm">
+              Contact Me
+            </Button>
+
+          </div>
+        </div>
+      )}
     </header>
   );
 };
